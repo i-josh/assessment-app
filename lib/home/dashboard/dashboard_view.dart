@@ -13,6 +13,41 @@ class DashboardView extends StatefulWidget {
 }
 
 class _DashboardViewState extends State<DashboardView> {
+  bool _showTitleBar = false;
+  bool _showGreeting = false;
+  bool _showMessage = false;
+  bool _showStats = false;
+  bool _showGrid = false;
+
+  @override
+  void initState() {
+    init();
+    super.initState();
+  }
+
+  void init() async {
+    await Future.delayed(const Duration(milliseconds: 500))
+        .whenComplete(() => setState(() {
+              _showTitleBar = true;
+            }));
+    await Future.delayed(const Duration(milliseconds: 500))
+        .whenComplete(() => setState(() {
+              _showGreeting = true;
+            }));
+    await Future.delayed(const Duration(milliseconds: 500))
+        .whenComplete(() => setState(() {
+              _showMessage = true;
+            }));
+    await Future.delayed(const Duration(milliseconds: 200))
+        .whenComplete(() => setState(() {
+              _showStats = true;
+            }));
+    await Future.delayed(const Duration(milliseconds: 200))
+        .whenComplete(() => setState(() {
+              _showGrid = true;
+            }));
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -34,66 +69,64 @@ class _DashboardViewState extends State<DashboardView> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const TitleBarWidget(),
-                  mediumVerticalSpace,
-                  Text(
-                    "Hi, Marina",
-                    style: TextStyle(
-                      color: beigeColor,
-                      fontSize: 25.sp,
-                    ),
-                  ),
-                  Text(
-                    "let's select your perfect place",
-                    style: TextStyle(
-                      color: blackColor,
-                      fontSize: 32.sp,
-                    ),
+                  AnimatedOpacity(
+                    opacity: _showTitleBar ? 1 : 0,
+                    curve: Curves.easeIn,
+                    duration: const Duration(milliseconds: 500),
+                    child: const TitleBarWidget(),
                   ),
                   mediumVerticalSpace,
-                  const Row(
-                    children: [
-                      StatWidget(
-                        title: "BUY",
-                        count: "1 034",
-                        shape: BoxShape.circle,
-                        color: Colors.orangeAccent,
+                  AnimatedOpacity(
+                    opacity: _showGreeting ? 1 : 0,
+                    curve: Curves.easeIn,
+                    duration: const Duration(milliseconds: 500),
+                    child: Text(
+                      "Hi, Marina",
+                      style: TextStyle(
+                        color: beigeColor,
+                        fontSize: 25.sp,
                       ),
-                      smallHorizontalSpace,
-                      StatWidget(
-                        title: "RENT",
-                        count: "2 212",
-                        color: whiteColor,
-                        textColor: beigeColor,
-                      )
-                    ],
+                    ),
+                  ),
+                  AnimatedOpacity(
+                    opacity: _showMessage ? 1 : 0,
+                    curve: Curves.easeIn,
+                    duration: const Duration(milliseconds: 500),
+                    child: Text(
+                      "let's select your perfect place",
+                      style: TextStyle(
+                        color: blackColor,
+                        fontSize: 32.sp,
+                      ),
+                    ),
+                  ),
+                  mediumVerticalSpace,
+                  Visibility(
+                    visible: _showStats,
+                    child: const Row(
+                      children: [
+                        StatWidget(
+                          title: "BUY",
+                          count: 1034,
+                          shape: BoxShape.circle,
+                          color: Colors.orangeAccent,
+                        ),
+                        smallHorizontalSpace,
+                        StatWidget(
+                          title: "RENT",
+                          count: 2212,
+                          color: whiteColor,
+                          textColor: beigeColor,
+                        )
+                      ],
+                    ),
                   ),
                 ],
               ),
             ),
-            Container(
-              padding: EdgeInsets.only(
-                  left: 8.w, right: 8.w, top: 8.w, bottom: 80.w),
-              decoration: BoxDecoration(
-                color: whiteColor,
-                border: Border.all(color: whiteColor),
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(30.w),
-                ),
-              ),
-              child: PictureGridWidget(
-                items: [
-                  PictureItem(
-                      image: "assets/images/img_1.jpg",
-                      location: "Gladkova St., 25"),
-                  PictureItem(
-                      image: "assets/images/img_2.jpg",
-                      location: "Gubina St., 11"),
-                  PictureItem(
-                      image: "assets/images/img_3.jpg",
-                      location: "Sedova St.,22"),
-                ],
-              ),
+            Visibility(
+              visible: _showGrid,
+              child: const GridWidget(),
             ),
           ],
         ),

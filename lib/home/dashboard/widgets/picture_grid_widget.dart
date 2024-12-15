@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:assessment/values/ui_dimens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -72,6 +73,19 @@ class Slider extends StatefulWidget {
 class _SliderState extends State<Slider> {
   final double _sliderPosition = 1.0;
   final double _handleRadius = 28.0.w;
+  bool _isRevealed = false;
+
+  @override
+  void initState() {
+    _animateSlider();
+    super.initState();
+  }
+
+  void _animateSlider() {
+    setState(() {
+      _isRevealed = !_isRevealed;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,21 +94,28 @@ class _SliderState extends State<Slider> {
         ClipRRect(
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-            child: Container(
-              height: _handleRadius * 2,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(40),
-                color: Colors.grey.shade100.withOpacity(0.5),
-              ),
-              alignment: Alignment.center,
-              child: Text(
-                widget.location,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 14.sp,
-                ),
-              ),
-            ),
+            child: TweenAnimationBuilder<double>(
+                duration: const Duration(milliseconds: 1800),
+                tween: Tween<double>(begin: 0, end: screenWidth(context)),
+                curve: Curves.easeIn,
+                builder: (context, width, child) {
+                  return Container(
+                    height: _handleRadius * 2,
+                    width: width,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(40),
+                      color: Colors.grey.shade100.withOpacity(0.5),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      widget.location,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14.sp,
+                      ),
+                    ),
+                  );
+                }),
           ),
         ),
         // Slider handle

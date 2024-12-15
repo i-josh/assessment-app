@@ -1,14 +1,14 @@
 import 'package:assessment/values/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-// Custom Bottom Navigation Bar widget
 class CustomBottomNavBar extends StatelessWidget {
-  final int selectedIndex; // Current selected index
-  final Function(int) onItemTapped; // Callback when an item is tapped
-  final List<BottomNavItem> items; // List of bottom nav items
-  final Color selectedItemColor; // Color for the selected item
-  final Color unselectedItemColor; // Color for the unselected items
-  final double borderRadius; // Border radius for rounded corners
+  final int selectedIndex;
+  final Function(int) onItemTapped;
+  final List<BottomNavItem> items;
+  final Color selectedItemColor;
+  final Color unselectedItemColor;
+  final double borderRadius;
 
   const CustomBottomNavBar({
     super.key,
@@ -17,20 +17,16 @@ class CustomBottomNavBar extends StatelessWidget {
     required this.items,
     this.selectedItemColor = Colors.orangeAccent,
     this.unselectedItemColor = Colors.black,
-    this.borderRadius = 40.0, // Default border radius
+    this.borderRadius = 40, // Default border radius
   });
 
   @override
   Widget build(BuildContext context) {
-    double height =
-        MediaQuery.of(context).size.height * 0.08; // Responsive height
-
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
         padding: const EdgeInsets.all(6),
         margin: const EdgeInsets.all(20),
-        height: height,
         decoration: BoxDecoration(
           color: blackColor,
           borderRadius: BorderRadius.circular(borderRadius),
@@ -51,8 +47,8 @@ class CustomBottomNavBar extends StatelessWidget {
     return GestureDetector(
       onTap: () => onItemTapped(index),
       child: Container(
-        height: 50,
-        width: 50,
+        height: 50.w,
+        width: 50.w,
         margin: const EdgeInsets.all(2),
         decoration: BoxDecoration(
           color:
@@ -63,7 +59,7 @@ class CustomBottomNavBar extends StatelessWidget {
             child: Icon(
           icon,
           color: whiteColor,
-          size: 20,
+          size: 20.w,
         )),
       ),
     );

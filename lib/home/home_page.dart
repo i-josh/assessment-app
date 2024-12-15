@@ -11,7 +11,10 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<Offset> _slideAnimation;
   int _currentIndex = 2;
   final _navBarItems = [
     BottomNavItem(
@@ -46,14 +49,46 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 3500),
+      vsync: this,
+    );
+
+    // Create the slide animation
+    _slideAnimation = Tween<Offset>(
+      begin: const Offset(0, 1),
+      end: const Offset(0, 0),
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeIn,
+      ),
+    );
+
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: CustomBottomNavBar(
-        unselectedItemColor: const Color(0xFF141413),
-        selectedIndex: _currentIndex,
-        onItemTapped: _onItemTapped,
-        items: _navBarItems,
+      floatingActionButton: SlideTransition(
+        position: _slideAnimation,
+        child: CustomBottomNavBar(
+          unselectedItemColor: const Color(0xFF141413),
+          selectedIndex: _currentIndex,
+          onItemTapped: _onItemTapped,
+          items: _navBarItems,
+        ),
       ),
       body: _pages[_currentIndex],
     );

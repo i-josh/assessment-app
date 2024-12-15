@@ -3,37 +3,78 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../values/colors.dart';
 
-class TitleBarWidget extends StatelessWidget {
+class TitleBarWidget extends StatefulWidget {
   const TitleBarWidget({
     super.key,
   });
+
+  @override
+  State<TitleBarWidget> createState() => _TitleBarWidgetState();
+}
+
+class _TitleBarWidgetState extends State<TitleBarWidget> {
+  bool _showContent = false;
+  double _pictureSize = 0;
+  final int _animationDuration = 800;
+
+  @override
+  void initState() {
+    _animateBox();
+    super.initState();
+  }
+
+  void _animateBox() async {
+    await Future.delayed(const Duration(milliseconds: 800));
+    setState(() {
+      _showContent = true;
+      _pictureSize = 50.w;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
+        AnimatedContainer(
+          duration: const Duration(milliseconds: 500),
+          constraints: BoxConstraints(
+            minWidth: 30.w,
+          ),
           padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 10.h),
           decoration: BoxDecoration(
               color: whiteColor, borderRadius: BorderRadius.circular(12.w)),
-          child: const Row(
-            children: [
-              Icon(
-                Icons.location_on,
-                color: beigeColor,
+          child: AnimatedSize(
+            duration: Duration(milliseconds: _animationDuration),
+            curve: Curves.easeInOut,
+            child: Visibility(
+              visible: _showContent,
+              child: const Row(
+                children: [
+                  Icon(
+                    Icons.location_on,
+                    color: beigeColor,
+                  ),
+                  Text(
+                    "Saint Petersburg",
+                    style: TextStyle(color: beigeColor),
+                  )
+                ],
               ),
-              Text(
-                "Saint Petersburg",
-                style: TextStyle(color: beigeColor),
-              )
-            ],
+            ),
           ),
         ),
-        CircleAvatar(
-          backgroundColor: Colors.orange,
-          radius: 25.w,
-          backgroundImage: const AssetImage('assets/images/user.jpeg'),
+        AnimatedContainer(
+          height: _pictureSize,
+          width: _pictureSize,
+          duration: Duration(milliseconds: _animationDuration),
+          curve: Curves.easeIn,
+          decoration: const BoxDecoration(
+              color: Colors.orange,
+              image: DecorationImage(
+                  image: AssetImage('assets/images/user.jpeg'),
+                  fit: BoxFit.cover),
+              shape: BoxShape.circle),
         )
       ],
     );
