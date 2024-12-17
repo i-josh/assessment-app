@@ -27,7 +27,7 @@ class PictureGridWidget extends StatelessWidget {
             final bool isFirst = index == 0;
             return Container(
               width: isFirst ? largeItemWidth : smallItemWidth,
-              height: 200.h,
+              height: 170.h,
               padding: EdgeInsets.all(15.w),
               decoration: BoxDecoration(
                 color: blackColor,
@@ -82,9 +82,11 @@ class _SliderState extends State<Slider> {
   }
 
   void _animateSlider() {
-    setState(() {
-      _isRevealed = !_isRevealed;
-    });
+    if (mounted) {
+      setState(() {
+        _isRevealed = !_isRevealed;
+      });
+    }
   }
 
   @override
@@ -95,7 +97,7 @@ class _SliderState extends State<Slider> {
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
             child: TweenAnimationBuilder<double>(
-                duration: const Duration(milliseconds: 1800),
+                duration: const Duration(milliseconds: 2000),
                 tween: Tween<double>(begin: 0, end: screenWidth(context)),
                 curve: Curves.easeIn,
                 builder: (context, width, child) {

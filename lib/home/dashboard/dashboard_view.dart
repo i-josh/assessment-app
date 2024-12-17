@@ -26,26 +26,41 @@ class _DashboardViewState extends State<DashboardView> {
   }
 
   void init() async {
-    await Future.delayed(const Duration(milliseconds: 500))
-        .whenComplete(() => setState(() {
-              _showTitleBar = true;
-            }));
-    await Future.delayed(const Duration(milliseconds: 500))
-        .whenComplete(() => setState(() {
-              _showGreeting = true;
-            }));
-    await Future.delayed(const Duration(milliseconds: 500))
-        .whenComplete(() => setState(() {
-              _showMessage = true;
-            }));
-    await Future.delayed(const Duration(milliseconds: 200))
-        .whenComplete(() => setState(() {
-              _showStats = true;
-            }));
-    await Future.delayed(const Duration(milliseconds: 200))
-        .whenComplete(() => setState(() {
-              _showGrid = true;
-            }));
+    await Future.delayed(const Duration(milliseconds: 500)).whenComplete(() {
+      if (mounted) {
+        setState(() {
+          _showTitleBar = true;
+        });
+      }
+    });
+    await Future.delayed(const Duration(milliseconds: 500)).whenComplete(() {
+      if (mounted) {
+        setState(() {
+          _showGreeting = true;
+        });
+      }
+    });
+    await Future.delayed(const Duration(milliseconds: 500)).whenComplete(() {
+      if (mounted) {
+        setState(() {
+          _showMessage = true;
+        });
+      }
+    });
+    await Future.delayed(const Duration(milliseconds: 500)).whenComplete(() {
+      if (mounted) {
+        setState(() {
+          _showStats = true;
+        });
+      }
+    });
+    await Future.delayed(const Duration(milliseconds: 500)).whenComplete(() {
+      if (mounted) {
+        setState(() {
+          _showGrid = true;
+        });
+      }
+    });
   }
 
   @override
@@ -84,7 +99,7 @@ class _DashboardViewState extends State<DashboardView> {
                       "Hi, Marina",
                       style: TextStyle(
                         color: beigeColor,
-                        fontSize: 25.sp,
+                        fontSize: 24.sp,
                       ),
                     ),
                   ),
@@ -96,38 +111,34 @@ class _DashboardViewState extends State<DashboardView> {
                       "let's select your perfect place",
                       style: TextStyle(
                         color: blackColor,
-                        fontSize: 32.sp,
+                        fontSize: 30.sp,
                       ),
                     ),
                   ),
                   mediumVerticalSpace,
-                  Visibility(
-                    visible: _showStats,
-                    child: const Row(
-                      children: [
-                        StatWidget(
-                          title: "BUY",
-                          count: 1034,
-                          shape: BoxShape.circle,
-                          color: Colors.orangeAccent,
-                        ),
-                        smallHorizontalSpace,
-                        StatWidget(
-                          title: "RENT",
-                          count: 2212,
-                          color: whiteColor,
-                          textColor: beigeColor,
+                  _showStats
+                      ? const Row(
+                          children: [
+                            StatWidget(
+                              title: "BUY",
+                              count: 1034,
+                              shape: BoxShape.circle,
+                              color: Colors.orangeAccent,
+                            ),
+                            smallHorizontalSpace,
+                            StatWidget(
+                              title: "RENT",
+                              count: 2212,
+                              color: whiteColor,
+                              textColor: beigeColor,
+                            )
+                          ],
                         )
-                      ],
-                    ),
-                  ),
+                      : const SizedBox.shrink(),
                 ],
               ),
             ),
-            Visibility(
-              visible: _showGrid,
-              child: const GridWidget(),
-            ),
+            _showGrid ? const GridWidget() : const SizedBox.shrink(),
           ],
         ),
       ),

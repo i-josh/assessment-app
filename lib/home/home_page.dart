@@ -1,6 +1,8 @@
+import 'package:assessment/home/search/search_view.dart';
 import 'package:flutter/material.dart';
 import 'package:uicons/uicons.dart';
 
+import '../values/colors.dart';
 import '../widgets/app_widgets.dart';
 import 'dashboard/dashboard_view.dart';
 
@@ -35,7 +37,7 @@ class _HomePageState extends State<HomePage>
   ];
 
   final _pages = [
-    Container(),
+    const SearchView(),
     Container(),
     const DashboardView(),
     Container(),
@@ -53,7 +55,7 @@ class _HomePageState extends State<HomePage>
     super.initState();
 
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 3500),
+      duration: const Duration(milliseconds: 4000),
       vsync: this,
     );
 
@@ -84,7 +86,7 @@ class _HomePageState extends State<HomePage>
       floatingActionButton: SlideTransition(
         position: _slideAnimation,
         child: CustomBottomNavBar(
-          unselectedItemColor: const Color(0xFF141413),
+          unselectedItemColor: darkerBlackColor,
           selectedIndex: _currentIndex,
           onItemTapped: _onItemTapped,
           items: _navBarItems,

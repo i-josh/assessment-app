@@ -16,21 +16,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height),
-      builder: (context,child) {
-        return MaterialApp(
-          title: 'Assessment App',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.orangeAccent),
-            useMaterial3: true,
-            textTheme: GoogleFonts.poppinsTextTheme().apply(
-              bodyColor: blackColor,
+        builder: (context, child) {
+          return MaterialApp(
+            title: 'Assessment App',
+            theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.orangeAccent),
+              useMaterial3: true,
+              textTheme: GoogleFonts.poppinsTextTheme().apply(
+                bodyColor: blackColor,
+              ),
             ),
-          ),
-          home: const HomePage(),
-          debugShowCheckedModeBanner: false,
-        );
-      }
-    );
+            home: const HomePage(),
+            debugShowCheckedModeBanner: false,
+          );
+        });
   }
 }

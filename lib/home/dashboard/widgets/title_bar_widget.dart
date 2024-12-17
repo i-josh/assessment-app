@@ -25,10 +25,12 @@ class _TitleBarWidgetState extends State<TitleBarWidget> {
 
   void _animateBox() async {
     await Future.delayed(const Duration(milliseconds: 800));
-    setState(() {
+    if(mounted) {
+      setState(() {
       _showContent = true;
       _pictureSize = 50.w;
     });
+    }
   }
 
   @override

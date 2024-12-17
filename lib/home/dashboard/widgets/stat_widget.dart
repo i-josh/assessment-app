@@ -27,7 +27,6 @@ class _StatWidgetState extends State<StatWidget>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
-  late Animation<int> _numberAnimation;
   bool _showContent = false;
 
   @override
@@ -40,15 +39,8 @@ class _StatWidgetState extends State<StatWidget>
 
     _animation = CurvedAnimation(parent: _controller, curve: Curves.linear);
 
-    _numberAnimation = IntTween(begin: 0, end: widget.count).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeOut,
-      ),
-    );
-
     _controller.addListener(() {
-      if (_controller.isCompleted) {
+      if (_controller.isCompleted && mounted) {
         setState(() {
           _showContent = true;
         });
@@ -96,18 +88,19 @@ class _StatWidgetState extends State<StatWidget>
                             Column(
                               children: [
                                 TweenAnimationBuilder<int>(
-                                  tween: IntTween(begin: 0,end: _numberAnimation.value),
-                                  duration: const Duration(milliseconds: 800),
-                                  builder: (context,value,child) {
-                                    return Text(
-                                      "$value",
-                                      style: TextStyle(
-                                          color: widget.textColor,
-                                          fontSize: 32.sp,
-                                          fontWeight: FontWeight.w700),
-                                    );
-                                  }
-                                ),
+                                    tween: IntTween(
+                                        begin: (widget.count / 0.8).ceil(),
+                                        end: widget.count),
+                                    duration: const Duration(milliseconds: 800),
+                                    builder: (context, value, child) {
+                                      return Text(
+                                        "$value",
+                                        style: TextStyle(
+                                            color: widget.textColor,
+                                            fontSize: 32.sp,
+                                            fontWeight: FontWeight.w700),
+                                      );
+                                    }),
                                 Text(
                                   "offers",
                                   style: TextStyle(color: widget.textColor),

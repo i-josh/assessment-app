@@ -44,7 +44,7 @@ class CustomBottomNavBar extends StatelessWidget {
   }
 
   Widget _buildNavItem(IconData icon, int index) {
-    return GestureDetector(
+    return InkWell(
       onTap: () => onItemTapped(index),
       child: Container(
         height: 50.w,
