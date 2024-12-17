@@ -28,7 +28,7 @@ class _TitleBarWidgetState extends State<TitleBarWidget> {
     if(mounted) {
       setState(() {
       _showContent = true;
-      _pictureSize = 50.w;
+      _pictureSize = 50;
     });
     }
   }
@@ -40,12 +40,12 @@ class _TitleBarWidgetState extends State<TitleBarWidget> {
       children: [
         AnimatedContainer(
           duration: const Duration(milliseconds: 500),
-          constraints: BoxConstraints(
-            minWidth: 30.w,
+          constraints: const BoxConstraints(
+            minWidth: 30,
           ),
-          padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 10.h),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
           decoration: BoxDecoration(
-              color: whiteColor, borderRadius: BorderRadius.circular(12.w)),
+              color: whiteColor, borderRadius: BorderRadius.circular(12)),
           child: AnimatedSize(
             duration: Duration(milliseconds: _animationDuration),
             curve: Curves.easeInOut,

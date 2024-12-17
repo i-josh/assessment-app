@@ -21,7 +21,7 @@ class _GridWidgetState extends State<GridWidget>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 1500),
+      duration: const Duration(milliseconds: 1200),
       vsync: this,
     );
 
@@ -50,7 +50,7 @@ class _GridWidgetState extends State<GridWidget>
       position: _slideAnimation,
       child: Container(
           padding:
-              EdgeInsets.only(left: 8.w, right: 8.w, top: 8.w, bottom: 80.w),
+              const EdgeInsets.only(left: 8, right: 8, top: 8, bottom: 80),
           decoration: BoxDecoration(
             color: whiteColor,
             border: Border.all(color: whiteColor),

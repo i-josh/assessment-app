@@ -31,8 +31,8 @@ class _SearchViewState extends State<SearchView> {
     await Future.delayed(const Duration(milliseconds: 300));
     if (mounted) {
       setState(() {
-        _searchBarHeight = 50.w;
-        _circleRadius = 50.w;
+        _searchBarHeight = 50;
+        _circleRadius = 50;
       });
     }
   }
@@ -61,46 +61,46 @@ class _SearchViewState extends State<SearchView> {
             ),
             !_canShowMarkers
                 ? const SizedBox.shrink()
-                : MarkerLayer(markers: [
+                : const MarkerLayer(markers: [
                     Marker(
-                        point: const ll.LatLng(50.8, 30.35),
-                        child: const MarkerIcon(),
-                        height: 50.w,
-                        width: 50.w),
+                        point: ll.LatLng(50.8, 30.35),
+                        child: MarkerIcon(),
+                        height: 50,
+                        width: 50),
                     Marker(
-                        point: const ll.LatLng(50.711, 30.39),
-                        child: const MarkerIcon(),
-                        height: 50.w,
-                        width: 50.w),
+                        point: ll.LatLng(50.711, 30.39),
+                        child: MarkerIcon(),
+                        height: 50,
+                        width: 50),
                     Marker(
-                        point: const ll.LatLng(50.70, 30.74),
-                        child: const MarkerIcon(),
-                        height: 50.w,
-                        width: 50.w),
+                        point: ll.LatLng(50.70, 30.74),
+                        child: MarkerIcon(),
+                        height: 50,
+                        width: 50),
                     Marker(
-                        point: const ll.LatLng(50.5, 30.74),
-                        child: const MarkerIcon(),
-                        height: 50.w,
-                        width: 50.w),
+                        point: ll.LatLng(50.5, 30.74),
+                        child: MarkerIcon(),
+                        height: 50,
+                        width: 50),
                     Marker(
-                        point: const ll.LatLng(50.43, 30.27),
-                        child: const MarkerIcon(),
-                        height: 50.w,
-                        width: 50.w),
+                        point: ll.LatLng(50.43, 30.27),
+                        child: MarkerIcon(),
+                        height: 50,
+                        width: 50),
                     Marker(
-                        point: const ll.LatLng(50.30, 30.63),
-                        child: const MarkerIcon(),
-                        height: 50.w,
-                        width: 50.w)
+                        point: ll.LatLng(50.30, 30.63),
+                        child: MarkerIcon(),
+                        height: 50,
+                        width: 50)
                   ])
           ],
         ),
         Positioned(
           left: 0,
           right: 0,
-          top: 60.w,
+          top: 60,
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30.w),
+            padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Row(
               children: [
                 Expanded(
@@ -112,16 +112,16 @@ class _SearchViewState extends State<SearchView> {
                       elevation: const WidgetStatePropertyAll(0),
                       backgroundColor: const WidgetStatePropertyAll(whiteColor),
                       leading: Padding(
-                        padding: EdgeInsets.only(
-                            left: 16.w, top: 16.w, bottom: 16.w),
+                        padding: const EdgeInsets.only(
+                            left: 16, top: 16, bottom: 16),
                         child: Icon(
                           UIcons.regularRounded.search,
-                          size: 20.w,
+                          size: 20,
                         ),
                       ),
                       hintText: "Saint Petersburg",
-                      hintStyle: WidgetStatePropertyAll(
-                          TextStyle(color: Colors.black, fontSize: 14.sp)),
+                      hintStyle: const WidgetStatePropertyAll(
+                          TextStyle(color: Colors.black, fontSize: 14)),
                     ),
                   ),
                 ),
@@ -137,7 +137,7 @@ class _SearchViewState extends State<SearchView> {
                     child: Center(
                       child: Icon(
                         UIcons.regularRounded.settings_sliders,
-                        size: 20.w,
+                        size: 20,
                       ),
                     ),
                   ),
@@ -149,9 +149,9 @@ class _SearchViewState extends State<SearchView> {
         Positioned(
           left: 0,
           right: 0,
-          bottom: 120.w,
+          bottom: 120,
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30.w),
+            padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -192,16 +192,16 @@ class _SearchViewState extends State<SearchView> {
                       popUpAnimationStyle: AnimationStyle(
                           curve: Curves.easeOut, reverseCurve: Curves.easeIn),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.w)),
+                          borderRadius: BorderRadius.circular(20)),
                       child: Container(
-                        height: 50.w,
-                        width: 50.w,
+                        height: 50,
+                        width: 50,
                         decoration: const BoxDecoration(
                             color: greyColor, shape: BoxShape.circle),
                         child: Center(
                           child: Icon(
                             _selectedPopUpItem.icon,
-                            size: 20.w,
+                            size: 20,
                             color: whiteColor,
                           ),
                         ),
@@ -209,14 +209,14 @@ class _SearchViewState extends State<SearchView> {
                     ),
                     tinyVerticalSpace,
                     Container(
-                      height: 50.w,
-                      width: 50.w,
+                      height: 50,
+                      width: 50,
                       decoration: const BoxDecoration(
                           color: greyColor, shape: BoxShape.circle),
                       child: Center(
                         child: Icon(
                           UIcons.regularRounded.paper_plane,
-                          size: 20.w,
+                          size: 20,
                           color: whiteColor,
                         ),
                       ),
@@ -224,19 +224,19 @@ class _SearchViewState extends State<SearchView> {
                   ],
                 ),
                 Container(
-                  height: 50.w,
-                  padding: EdgeInsets.symmetric(horizontal: 12.w),
+                  height: 50,
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30.w),
+                      borderRadius: BorderRadius.circular(30),
                       color: greyColor),
-                  child: Row(children: [
+                  child: const Row(children: [
                     Icon(
                       Icons.notes,
                       color: whiteColor,
-                      size: 20.w,
+                      size: 20,
                     ),
                     smallHorizontalSpace,
-                    const Text(
+                    Text(
                       "List of variants",
                       style: TextStyle(color: whiteColor),
                     )

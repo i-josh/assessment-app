@@ -47,8 +47,8 @@ class CustomBottomNavBar extends StatelessWidget {
     return InkWell(
       onTap: () => onItemTapped(index),
       child: Container(
-        height: 50.w,
-        width: 50.w,
+        height: 50,
+        width: 50,
         margin: const EdgeInsets.all(2),
         decoration: BoxDecoration(
           color:
@@ -59,7 +59,7 @@ class CustomBottomNavBar extends StatelessWidget {
             child: Icon(
           icon,
           color: whiteColor,
-          size: 20.w,
+          size: 20,
         )),
       ),
     );

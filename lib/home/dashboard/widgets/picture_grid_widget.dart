@@ -26,16 +26,16 @@ class PictureGridWidget extends StatelessWidget {
           children: List.generate(items.length, (index) {
             final bool isFirst = index == 0;
             return Container(
+              height: 200,
               width: isFirst ? largeItemWidth : smallItemWidth,
-              height: 170.h,
-              padding: EdgeInsets.all(15.w),
+              padding: const EdgeInsets.all(15),
               decoration: BoxDecoration(
                 color: blackColor,
                 image: DecorationImage(
                   image: AssetImage(items[index].image),
                   fit: BoxFit.cover,
                 ),
-                borderRadius: BorderRadius.circular(30.w),
+                borderRadius: BorderRadius.circular(30),
               ),
               child: Align(
                 alignment: Alignment.bottomCenter,
@@ -72,7 +72,7 @@ class Slider extends StatefulWidget {
 
 class _SliderState extends State<Slider> {
   final double _sliderPosition = 1.0;
-  final double _handleRadius = 28.0.w;
+  final double _handleRadius = 28.0;
   bool _isRevealed = false;
 
   @override

@@ -68,7 +68,7 @@ class _StatWidgetState extends State<StatWidget>
                 double size = _animation.value * constraints.maxWidth;
 
                 return Container(
-                  padding: EdgeInsets.all(20.w),
+                  padding: const EdgeInsets.all(20),
                   height: size,
                   width: size,
                   decoration: BoxDecoration(
@@ -76,7 +76,7 @@ class _StatWidgetState extends State<StatWidget>
                       shape: widget.shape,
                       borderRadius: widget.shape == BoxShape.circle
                           ? null
-                          : BorderRadius.circular(20.w)),
+                          : BorderRadius.circular(20)),
                   child: _showContent
                       ? Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
